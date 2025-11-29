@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../api.js";
+import Navbar from "../components/Navbar.jsx";
 
 const LoginPage = () => {
   const [accountName, setAccountName] = useState("");
@@ -35,15 +36,10 @@ const LoginPage = () => {
   };
 
   return (
-    
-    
+      
     <div className="min-h-screen">
       <header className='bg-base-300 border-base-content'>
-            <div className="mx-auto max-w-6xl p-4">
-              <div className="flex items-center justify-between">
-                <h1 className="text-3xl font-bold text-primary font-mono tracking-tighter">Gerenciador de Apps</h1>
-              </div>
-            </div>
+            <Navbar />
           </header>
       <div className="max-w-2xl mx-auto p-4 mt-6">
         <h2 className="text-2xl font-bold mb-4">Login</h2>

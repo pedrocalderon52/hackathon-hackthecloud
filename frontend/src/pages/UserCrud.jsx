@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
 
@@ -104,11 +105,19 @@ const UsersPage = () => {
   };
 
   return (
+    
     <div className="min-h-screen">
-      <Navbar />
-
+    <header className='bg-base-300 border-base-content/10'>
+            <div className='mx-auto max-w-6xl p-4'>
+                <div className="flex items-center justify-between">
+                    <h1 className='text-3xl font-bold text-primary font-mono tracking-tighter'>
+                        Kya - Know Your Activites
+                    </h1>
+              </div>
+            </div>
+      </header>
       <div className="max-w-4xl mx-auto p-4 mt-6">
-
+        
         <h1 className="text-2xl font-bold mb-4">Cadastro de Usuários</h1>
 
         {/* FORM */}

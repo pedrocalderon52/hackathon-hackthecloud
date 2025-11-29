@@ -12,9 +12,9 @@ const Navbar = () => {
                     Gerenciador de APPs
                 </h1>
                 <div className='flex items-center gap-4'>
-                    <Link to={"/create"} className="btn btn-primary">
+                    <Link to={"/cadastro"} className="btn btn-primary">
                         <PlusIcon className="h-5 w-5"/>
-                        <span>Novo app</span>
+                        <span>Cadastro</span>
                     </Link>
                 </div>
             </div>
