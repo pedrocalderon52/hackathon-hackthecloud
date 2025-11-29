@@ -60,28 +60,30 @@ model Semester {
 }
 
 model Discipline {
-  id         Int        @id @default(autoincrement())
-  semesterId Int
-  nome       String
-  notas      Json
-  semester   Semester   @relation(fields: [semesterId], references: [id], onDelete: Cascade)
-  tarefas    Tarefa[]
-  provas     Prova[]
-  eventos    Evento[]
-  aulas      Aula[]
+  id                Int        @id @default(autoincrement())
+  semesterId        Int
+  peso              Float      @default(1.0)
+  nome              String
+  notas             Json
+  semester          Semester   @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  tarefas           Tarefa[]
+  provas            Prova[]
+  eventos           Evento[]
+  aulas             Aula[]
   @@index([semesterId])
 }
 
 model Week {
-  id               Int          @id @default(autoincrement())
-  semesterId       Int
-  ICS              Float
-  quantidadeProvas Int          @default(0)
-  semester         Semester     @relation(fields: [semesterId], references: [id], onDelete: Cascade)
-  tarefas          Tarefa[]
-  provas           Prova[]
-  eventos          Evento[]
-  blocosCinza      GrayBlock[]
+  id                    Int          @id @default(autoincrement())
+  semesterId            Int
+  iCS                   Float        @default(0.0)
+  densidadeSemanal      Float        @default(1.0)
+  quantidadeProvas      Int          @default(0)
+  semester              Semester     @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  tarefas               Tarefa[]
+  provas                Prova[]
+  eventos               Evento[]
+  blocosCinza           GrayBlock[]
   @@index([semesterId])
 }
 
@@ -94,6 +96,7 @@ model Tarefa {
   dificuldade   DifficultyLevel
   tempoEstimado TaskEstimate
   isComplete    Boolean         @default(false)
+  iCS           Float           @default(0.0)
   observacao    String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
@@ -111,6 +114,7 @@ model Prova {
   dataInicio   DateTime
   dataFinal    DateTime
   difficulty   DifficultyLevel
+  iCS          Float           @default(0.0)
   observacao   String?
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
@@ -128,6 +132,7 @@ model Evento {
   dataInicio   DateTime
   dataFinal    DateTime
   dificuldade  DifficultyLevel
+  iCS          Float           @default(0.0)
   observacao   String?
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
