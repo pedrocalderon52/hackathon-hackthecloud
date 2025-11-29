@@ -6,6 +6,7 @@ const blocoRoutes = require('./routes/blocoRoutes');
 const semanaRoutes = require('./routes/semanaRoutes');
 const disciplinaRoutes = require('./routes/disciplinaRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
+const diaRoutes = require('./routes/diaRoutes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/blocos', blocoRoutes);
 app.use('/semanas', semanaRoutes);
 app.use('/disciplinas', disciplinaRoutes);
 app.use('/recomendacoes', recommendationRoutes);
+app.use('/dias', diaRoutes);
 
 const port = process.env.PORT || 3000;
 

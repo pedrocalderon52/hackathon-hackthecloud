@@ -63,11 +63,11 @@ const generateSuggestion = ({ tasks = [], blocks = [], dataAtual = new Date() } 
   const targetDate = findTargetDate(deadline, now, blocks);
   if (!targetDate) return null;
 
-  const oldICS = calculateICS({ tarefas: tasks });
+  const oldICS = calculateICS({ tarefas: tasks }).iCS;
   const updatedTasks = tasks.map(t =>
     t.id === task.id ? { ...t, dataLimite: targetDate.toISOString() } : t
   );
-  const newICS = calculateICS({ tarefas: updatedTasks });
+  const newICS = calculateICS({ tarefas: updatedTasks }).iCS;
 
   return {
     type: 'move',
@@ -94,7 +94,7 @@ const buildRecommendations = ({ tasks = [], provas = [], dataAtual = new Date() 
   const doneTasks = tasks.filter(t => t.isComplete).length;
   const completion = totalTasks ? doneTasks / totalTasks : 0;
 
-  const ics = calculateICS({ tarefas: tasks, provas });
+  const ics = calculateICS({ tarefas: tasks, provas }).iCS;
 
   const recommendations = [];
 
