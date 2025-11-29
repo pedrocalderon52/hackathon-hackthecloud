@@ -1,0 +1,167 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum DifficultyLevel {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}
+
+enum TaskEstimate {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+  SIX
+  SEVEN
+  EIGHT
+  NINE
+  TEN
+}
+
+enum ClassStatus {
+  PENDENTE
+  CONCLUIDA
+  FALTA
+  SUSPENSA
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  nome          String
+  senha         String
+  email         String     @unique
+  universidade  String
+  horaInicioDia String
+  horaFinalDia  String
+  semesters     Semester[]
+}
+
+model Semester {
+  id         Int          @id @default(autoincrement())
+  userId     Int
+  dataInicio DateTime
+  dataFinal  DateTime
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weeks      Week[]
+  disciplinas Discipline[]
+  aulas      Aula[]
+}
+
+model Discipline {
+  id         Int        @id @default(autoincrement())
+  semesterId Int
+  nome       String
+  notas      Json
+  semester   Semester   @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  tarefas    Tarefa[]
+  provas     Prova[]
+  eventos    Evento[]
+  aulas      Aula[]
+  @@index([semesterId])
+}
+
+model Week {
+  id               Int          @id @default(autoincrement())
+  semesterId       Int
+  ICS              Float
+  quantidadeProvas Int          @default(0)
+  semester         Semester     @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  tarefas          Tarefa[]
+  provas           Prova[]
+  eventos          Evento[]
+  blocosCinza      GrayBlock[]
+  @@index([semesterId])
+}
+
+model Tarefa {
+  id            Int             @id @default(autoincrement())
+  semanaId      Int
+  disciplineId  Int?
+  nome          String
+  dataLimite    DateTime
+  dificuldade   DifficultyLevel
+  tempoEstimado TaskEstimate
+  isComplete    Boolean         @default(false)
+  observacao    String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  semana        Week            @relation(fields: [semanaId], references: [id], onDelete: Cascade)
+  disciplina    Discipline?     @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  @@index([semanaId])
+  @@index([disciplineId])
+}
+
+model Prova {
+  id           Int             @id @default(autoincrement())
+  semanaId     Int
+  disciplineId Int
+  nome         String
+  dataInicio   DateTime
+  dataFinal    DateTime
+  difficulty   DifficultyLevel
+  observacao   String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  semana       Week            @relation(fields: [semanaId], references: [id], onDelete: Cascade)
+  disciplina   Discipline      @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+  @@index([semanaId])
+  @@index([disciplineId])
+}
+
+model Evento {
+  id           Int             @id @default(autoincrement())
+  semanaId     Int
+  disciplineId Int?
+  nome         String
+  dataInicio   DateTime
+  dataFinal    DateTime
+  dificuldade  DifficultyLevel
+  observacao   String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  semana       Week            @relation(fields: [semanaId], references: [id], onDelete: Cascade)
+  disciplina   Discipline?     @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  @@index([semanaId])
+  @@index([disciplineId])
+}
+
+model Aula {
+  id           Int         @id @default(autoincrement())
+  semesterId   Int
+  disciplineId Int?
+  name         String
+  local        String
+  dataInicio   DateTime
+  dataFinal    DateTime
+  status       ClassStatus
+  observacao   String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  semester     Semester    @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  disciplina   Discipline? @relation(fields: [disciplineId], references: [id], onDelete: SetNull)
+  @@index([semesterId])
+  @@index([disciplineId])
+}
+
+model GrayBlock {
+  id             Int      @id @default(autoincrement())
+  semanaId       Int
+  name           String
+  startDateTime  DateTime
+  endDateTime    DateTime
+  observacao     String?
+  semana         Week     @relation(fields: [semanaId], references: [id], onDelete: Cascade)
+  @@index([semanaId])
+}
