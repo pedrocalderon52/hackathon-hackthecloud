@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const tarefaRoutes = require('./routes/tarefaRoutes');
-const provaRoutes = require('./routes/provaRoutes');
-const blocoRoutes = require('./routes/blocoRoutes');
-const semanaRoutes = require('./routes/semanaRoutes');
-const disciplinaRoutes = require('./routes/disciplinaRoutes');
-const recommendationRoutes = require('./routes/recommendationRoutes');
-const diaRoutes = require('./routes/diaRoutes');
-const setupRoutes = require('./routes/setupRoutes');
+const tarefaRoutes = require('./src/routes/tarefaRoutes');
+const provaRoutes = require('./src/routes/provaRoutes');
+const blocoRoutes = require('./src/routes/blocoRoutes');
+const semanaRoutes = require('./src/routes/semanaRoutes');
+const disciplinaRoutes = require('./src/routes/disciplinaRoutes');
+const recommendationRoutes = require('./src/routes/recommendationRoutes');
+const diaRoutes = require('./src/routes/diaRoutes');
+const setupRoutes = require('./src/routes/setupRoutes');
 
 const app = express();
 
@@ -28,4 +28,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`API running on port ${port}`);
 });
-

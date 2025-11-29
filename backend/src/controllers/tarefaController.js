@@ -11,6 +11,26 @@ const createTarefa = async (req, res) => {
   }
 };
 
+const readTarefas = async (req, res) => {
+  try {
+    const tarefas = await prisma.tarefa.findMany({ orderBy: { dataLimite: 'asc' } });
+    res.json({ tarefas });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+const readTarefa = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tarefa = await prisma.tarefa.findUnique({ where: { id: Number(id) } });
+    if (!tarefa) return res.status(404).json({ error: 'Tarefa não encontrada' });
+    res.json({ tarefa });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 const updateTarefa = async (req, res) => {
   try {
     const { id } = req.params;
@@ -32,4 +52,4 @@ const deleteTarefa = async (req, res) => {
   }
 };
 
-module.exports = { createTarefa, updateTarefa, deleteTarefa };
+module.exports = { createTarefa, readTarefas, readTarefa, updateTarefa, deleteTarefa };

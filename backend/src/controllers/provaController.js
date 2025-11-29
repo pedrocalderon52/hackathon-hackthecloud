@@ -11,6 +11,26 @@ const createProva = async (req, res) => {
   }
 };
 
+const readProvas = async (req, res) => {
+  try {
+    const provas = await prisma.prova.findMany({ orderBy: { dataInicio: 'asc' } });
+    res.json({ provas });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+const readProva = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const prova = await prisma.prova.findUnique({ where: { id: Number(id) } });
+    if (!prova) return res.status(404).json({ error: 'Prova não encontrada' });
+    res.json({ prova });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 const updateProva = async (req, res) => {
   try {
     const { id } = req.params;
@@ -32,4 +52,4 @@ const deleteProva = async (req, res) => {
   }
 };
 
-module.exports = { createProva, updateProva, deleteProva };
+module.exports = { createProva, readProvas, readProva, updateProva, deleteProva };

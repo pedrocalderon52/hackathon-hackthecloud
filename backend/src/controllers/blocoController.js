@@ -3,9 +3,19 @@ const prisma = require('../prismaClient');
 
 const createBloco = async (req, res) => {
   try {
-    const data = req.body;
-    const bloco = await prisma.grayBlock.create({ data });
-    res.status(201).json({ bloco });
+    const { semanaId, name, bloco, startDateTime, endDateTime, observacao } = req.body;
+    const payload = {
+      semanaId: Number(semanaId),
+      name: name || bloco,
+      startDateTime,
+      endDateTime,
+      observacao,
+    };
+    if (!payload.name) {
+      return res.status(400).json({ error: 'Campo name (ou bloco) é obrigatório' });
+    }
+    const blocoCriado = await prisma.grayBlock.create({ data: payload });
+    res.status(201).json({ bloco: blocoCriado });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -22,6 +32,26 @@ const updateBloco = async (req, res) => {
   }
 };
 
+const readBlocos = async (req, res) => {
+  try {
+    const blocos = await prisma.grayBlock.findMany({ orderBy: { startDateTime: 'asc' } });
+    res.json({ blocos });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+const readBloco = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const bloco = await prisma.grayBlock.findUnique({ where: { id: Number(id) } });
+    if (!bloco) return res.status(404).json({ error: 'Bloco não encontrado' });
+    res.json({ bloco });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 const deleteBloco = async (req, res) => {
   try {
     const { id } = req.params;
@@ -32,4 +62,4 @@ const deleteBloco = async (req, res) => {
   }
 };
 
-module.exports = { createBloco, updateBloco, deleteBloco };
+module.exports = { createBloco, readBlocos, readBloco, updateBloco, deleteBloco };
