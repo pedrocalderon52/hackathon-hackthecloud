@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 13% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
+
+    --primary: 43 96% 56%;
+    --primary-foreground: 220 13% 18%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 13% 18%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 220 13% 18%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 43 96% 56%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for the academic planner */
+    --golden: 43 96% 56%;
+    --golden-light: 43 100% 70%;
+    --golden-dark: 43 90% 45%;
+    
+    /* ICS Colors - Índice de Carga Semanal */
+    --ics-green: 142 71% 45%;
+    --ics-green-light: 142 76% 90%;
+    --ics-yellow: 45 93% 47%;
+    --ics-yellow-light: 45 100% 90%;
+    --ics-red: 0 84% 60%;
+    --ics-red-light: 0 93% 94%;
+    --ics-purple: 271 81% 56%;
+    --ics-purple-light: 271 91% 94%;
+
+    /* Event type colors */
+    --event-class: 43 96% 56%;
+    --event-work: 210 100% 50%;
+    --event-exam: 0 84% 60%;
+    --event-activity: 142 71% 45%;
+    --event-seminar: 271 81% 56%;
+    --event-meeting: 199 89% 48%;
+
+    /* Status colors */
+    --status-pending: 45 93% 47%;
+    --status-completed: 142 71% 45%;
+    --status-missed: 0 84% 60%;
+    --status-suspended: 220 9% 46%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 13% 18%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 220 13% 18%;
+    --sidebar-accent: 43 100% 95%;
+    --sidebar-accent-foreground: 220 13% 18%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 43 96% 56%;
+  }
+
+  .dark {
+    --background: 220 13% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 13% 14%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 13% 14%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 43 96% 56%;
+    --primary-foreground: 220 13% 18%;
+
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 13% 18%;
+    --muted-foreground: 220 9% 60%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 220 13% 18%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 20%;
+    --input: 220 13% 20%;
+    --ring: 43 96% 56%;
+
+    --sidebar-background: 220 13% 12%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 220 13% 18%;
+    --sidebar-accent: 220 13% 18%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 13% 20%;
+    --sidebar-ring: 43 96% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  /* Day card styles */
+  .day-card {
+    @apply bg-primary rounded-xl p-3 min-h-[160px] md:min-h-[180px] flex flex-col transition-all duration-200 hover:shadow-lg hover:scale-[1.02];
+  }
+
+  .day-card-today {
+    @apply ring-2 ring-offset-2 ring-primary/60 shadow-lg;
+  }
+
+  /* ICS bar gradient */
+  .ics-bar {
+    @apply h-2 rounded-full transition-all duration-300;
+  }
+
+  .ics-green {
+    background: linear-gradient(90deg, hsl(142 71% 45%) 0%, hsl(142 71% 55%) 50%, hsl(142 76% 70%) 100%);
+    box-shadow: 0 2px 8px hsl(142 71% 45% / 0.3);
+  }
+
+  .ics-yellow {
+    background: linear-gradient(90deg, hsl(45 93% 47%) 0%, hsl(45 93% 57%) 50%, hsl(45 100% 70%) 100%);
+    box-shadow: 0 2px 8px hsl(45 93% 47% / 0.3);
+  }
+
+  .ics-red {
+    background: linear-gradient(90deg, hsl(0 84% 50%) 0%, hsl(0 84% 60%) 50%, hsl(0 93% 70%) 100%);
+    box-shadow: 0 2px 8px hsl(0 84% 60% / 0.3);
+  }
+
+  .ics-purple {
+    background: linear-gradient(90deg, hsl(271 81% 46%) 0%, hsl(271 81% 56%) 50%, hsl(271 91% 70%) 100%);
+    box-shadow: 0 2px 8px hsl(271 81% 56% / 0.3);
+  }
+
+  /* Week ICS indicator bar */
+  .week-ics-bar {
+    @apply w-full h-2.5 rounded-full mb-3;
+  }
+
+  /* Event badges */
+  .event-badge {
+    @apply px-2 py-1 rounded-md text-xs font-medium truncate;
+  }
+
+  .event-badge-class {
+    @apply bg-primary/20 text-primary-foreground;
+  }
+
+  .event-badge-exam {
+    @apply bg-destructive text-destructive-foreground;
+  }
+
+  .event-badge-activity {
+    @apply bg-[hsl(var(--ics-green))] text-white;
+  }
+
+  .event-badge-seminar {
+    @apply bg-[hsl(var(--ics-purple))] text-white;
+  }
+
+  .event-badge-work {
+    @apply bg-blue-500 text-white;
+  }
+
+  .event-badge-meeting {
+    @apply bg-cyan-500 text-white;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
