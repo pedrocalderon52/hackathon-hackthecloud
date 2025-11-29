@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "./ui/card";
 import { Flame } from "lucide-react";
 
 export function HeatmapPanel({ data = [], title = "Heatmap de Atividades" }) {

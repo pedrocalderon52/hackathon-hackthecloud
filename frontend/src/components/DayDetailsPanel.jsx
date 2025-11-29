@@ -1,7 +1,7 @@
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "./ui/card";
+import { Badge } from "./ui/badge";
 import { Calendar } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 const eventTypeColors = {
   aula: "bg-primary",

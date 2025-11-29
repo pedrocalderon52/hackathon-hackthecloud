@@ -1,7 +1,7 @@
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
-import { Badge } from "@/components/ui/badge";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "./ui/drawer";
+import { Badge } from "./ui/badge";
 import { Calendar, MapPin, Star, Hammer } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 
 const eventTypeLabels = {
   aula: "Aula",
