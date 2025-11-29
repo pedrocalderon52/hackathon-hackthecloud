@@ -11,7 +11,7 @@ const setupRoutes = require('./routes/setupRoutes');
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:8080' }));
+app.use(cors({ origin: ['http://localhost:8080', 'http://localhost:5173'] }));
 app.use(express.json());
 
 app.use('/tarefas', tarefaRoutes);
@@ -28,4 +28,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`API running on port ${port}`);
 });
-
