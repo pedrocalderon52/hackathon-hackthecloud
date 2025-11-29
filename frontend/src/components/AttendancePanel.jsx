@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Card } from "./ui/card";
+import { Progress } from "./ui/progress";
 
 export function AttendancePanel({ attendanceRecords }) {
   return (

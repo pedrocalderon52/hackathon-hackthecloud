@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { WeekView } from "@/components/WeekView";
-import { SuggestionsPanel } from "@/components/SuggestionsPanel";
-import { AttendancePanel } from "@/components/AttendancePanel";
-import { TaskDetailsDrawer } from "@/components/TaskDetailsDrawer";
-import { CreateTaskDialog } from "@/components/CreateTaskDialog";
-import { DayDetailsPanel } from "@/components/DayDetailsPanel";
-import { HeatmapPanel } from "@/components/HeatmapPanel";
-import { Button } from "@/components/ui/button";
+import { WeekView } from "../components/WeekView";
+import { SuggestionsPanel } from "../components/SuggestionsPanel";
+import { AttendancePanel } from "../components/AttendancePanel";
+import { TaskDetailsDrawer } from "../components/TaskDetailsDrawer";
+import { CreateTaskDialog } from "../components/CreateTaskDialog";
+import { DayDetailsPanel } from "../components/DayDetailsPanel";
+import { HeatmapPanel } from "../components/HeatmapPanel";
+import { Button } from "../components/ui/button";
 import { Calendar, ChevronLeft, ChevronRight, Plus, LayoutGrid } from "lucide-react";
 import {
     generateMockWeekData,
     mockSuggestions,
     mockAttendanceRecords
-} from "@/utils/mockData";
+} from "../utils/mockData";
 
 const Index = () => {
     const [selectedTask, setSelectedTask] = useState(null);

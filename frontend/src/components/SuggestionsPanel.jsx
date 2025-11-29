@@ -1,6 +1,6 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "./ui/card";
 import { AlertCircle, Info, CheckCircle } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "./ui/badge";
 
 const iconMap = {
   warning: AlertCircle,
