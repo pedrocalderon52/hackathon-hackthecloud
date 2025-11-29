@@ -1,2 +1,0 @@
--> LOGIN => email e senha
--> CADASTRO => email, senha, confirmaçao de senha, nome, universidade (calendario)
